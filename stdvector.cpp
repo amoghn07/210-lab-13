@@ -12,7 +12,7 @@ int main(){
     vector <double> purchases;
 
     string name;
-    int amt;
+    double amt;
 
     fin.open("customers.txt");
     //filling in array with all text file data
