@@ -2,25 +2,24 @@
 #include <fstream>
 #include <numeric>
 #include <algorithm>
-#include <array>
+#include <vector>
 using namespace std;
-
-const int numPurchase = 30;
-
 
 int main(){
 
     ifstream fin;
-    array <string, numPurchase> customers;
-    array <double, numPurchase> purchases;
+    vector <string> customers;
+    vector <double> purchases;
 
     fin.open("customers.txt");
     //filling in array with all text file data
     if (fin.good()){
-        for (int i = 0; i < numPurchase; i++){
+        int i = 0;
+        while (!fin.eof()){
             fin >> purchases[i];
             fin.ignore();
             getline(fin, customers[i]);
+            i++;
         }
         fin.close();
     }
@@ -35,7 +34,7 @@ int main(){
     cout << "Smallest sale: " << *min_element(purchases.begin(), purchases.end()) << endl;
     cout << "Total Revenue: " << accumulate(purchases.begin(), purchases.end(), 0) << endl;
 
-    array<double, numPurchase>::iterator it;
+    vector<double>::iterator it;
     it = find(purchases.begin(), purchases.end(), bigBuy);
     string bigBuyPerson = customers.at(it - purchases.begin());
 
