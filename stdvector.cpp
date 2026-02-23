@@ -11,15 +11,18 @@ int main(){
     vector <string> customers;
     vector <double> purchases;
 
+    string name;
+    int amt;
+
     fin.open("customers.txt");
     //filling in array with all text file data
     if (fin.good()){
-        int i = 0;
-        while (!fin.eof()){
-            fin >> purchases[i];
+        while (fin.good()){
+            fin >> amt;
             fin.ignore();
-            getline(fin, customers[i]);
-            i++;
+            getline(fin, name);
+            customers.push_back(name);
+            purchases.push_back(amt);
         }
         fin.close();
     }
